@@ -3,92 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version history</title>
+    <title>Sluppy Stars — История версий</title>
+    <link rel="icon" href="logo.jpg" />
     <style>
+        :root {
+            --bg: #f3f4f6;
+            --card: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --accent: #3b82f6;
+            --border: rgba(15, 23, 42, 0.1);
+            --radius: 14px;
+            --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 700px;
-            margin: 50px auto;
-            padding: 0 20px;
-            color: #333;
-            line-height: 1.6;
-            background: #f8f9fa;
             min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: var(--text);
+            background: radial-gradient(circle at top, rgba(59, 130, 246, 0.12), transparent 60%),
+                        linear-gradient(180deg, var(--bg), #f8fafc);
         }
-        .container {
-            background: #fff;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+        .layout {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
         }
-        h1 {
-            font-size: 28px;
-            text-align: center;
-            color: #000;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-        .version-block {
-            margin: 30px 0;
-            padding: 20px 0;
-            border-left: 3px solid #e9ecef;
-            padding-left: 20px;
-        }
-        .version-header {
+
+        .header {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
             align-items: center;
-            margin-bottom: 10px;
+            gap: 16px;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-radius: var(--radius);
+            background: rgba(255,255,255,0.85);
+            box-shadow: var(--shadow);
         }
-        .version-number {
-            font-weight: 500;
-            font-size: 20px;
-            color: #000;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
-        .version-date {
-            color: #6c757d;
+
+        .logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            margin: 4px 0 0;
             font-size: 14px;
         }
+
+        .search {
+            width: 100%;
+            max-width: 280px;
+            border: 1px solid rgba(15, 23, 42, 0.18);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 150ms ease, box-shadow 150ms ease;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text);
+        }
+
+        .search:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+        }
+
+        .container {
+            margin-top: 20px;
+            background: rgba(255,255,255,0.9);
+            border-radius: var(--radius);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        .version-block {
+            margin: 30px 0;
+            padding: 22px 22px 22px 18px;
+            border-left: 4px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .version-block:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+        }
+
+        .version-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: baseline;
+            margin-bottom: 12px;
+        }
+
+        .version-number {
+            font-weight: 700;
+            font-size: 20px;
+            color: #111827;
+        }
+
+        .version-date {
+            color: var(--muted);
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
         ul {
-            margin: 15px 0 0 0;
+            margin: 12px 0 0;
             padding-left: 20px;
+            color: #2d3748;
         }
+
         li {
-            margin-bottom: 8px;
-            color: #495057;
+            margin-bottom: 10px;
+            line-height: 1.65;
         }
-        hr {
-            border: 0;
-            border-top: 1px solid #dee2e6;
-            margin: 40px 0;
+
+        .no-results {
+            padding: 26px 18px;
+            margin: 16px 0;
+            text-align: center;
+            border-radius: var(--radius);
+            background: rgba(219, 234, 254, 0.6);
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        @media (max-width: 520px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search {
+                max-width: 100%;
+            }
+
+            .version-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .version-date {
+                margin-top: 4px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Version history — Sluppy Stars</h1>
-
-        <div class="version-block">
-            <div class="version-header">
-                <span class="version-number">1.0.0</span>
-                <span class="version-date">14 марта 2026</span>
+    <main class="layout">
+        <header class="header">
+            <div class="logo">
+                <img src="logo.jpg" alt="Sluppy Stars logo" loading="lazy">
+                <div>
+                    <h1 class="title">Sluppy Stars</h1>
+                    <p class="subtitle">История версий и заметки о релизах</p>
+                </div>
             </div>
-            <ul>
-                <li>Первый запуск проекта.</li>
-                <li>Создана страница чейнджлога в стиле Telegram Desktop.</li>
-                <li>Добавлены базовые стили оформления.</li>
-            </ul>
-        </div>
 
-        <hr>
+            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)" aria-label="Поиск версий">
+        </header>
 
-        <div class="version-block">
-            <div class="version-header">
-                <span class="version-number">0.9.0 (Beta)</span>
-                <span class="version-date">10 марта 2026</span>
+        <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.0">
+                <div class="version-header">
+                    <span class="version-number">1.0.0</span>
+                    <span class="version-date">14 марта 2026</span>
+                </div>
+                <ul>
+                    <li>Первый запуск проекта.</li>
+                    <li>Создана страница чейнджлога в стиле Telegram Desktop.</li>
+                    <li>Добавлены базовые стили оформления.</li>
+                </ul>
             </div>
-            <ul>
-                <li>Тестирование структуры сайта.</li>
+
+            <div class="version-block" data-version="0.9.0">
+                <div class="version-header">
+                    <span class="version-number">0.9.0 (Beta)</span>
+                    <span class="version-date">10 марта 2026</span>
+                </div>
+                <ul>
+                    <li>Тестирование структуры сайта.</li>
+                </ul>
+            </div>
+
+            <div class="no-results" id="noResults" hidden>
+                Ничего не найдено. Попробуйте изменить запрос.
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const searchInput = document.getElementById('search');
+        const versionBlocks = Array.from(document.querySelectorAll('.version-block'));
+        const noResults = document.getElementById('noResults');
+
+        function filterVersions() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            versionBlocks.forEach(block => {
+                const version = block.dataset.version?.toLowerCase() ?? '';
+                const title = block.querySelector('.version-number')?.textContent?.toLowerCase() ?? '';
+
+                const matches = !query || version.includes(query) || title.includes(query);
+                block.hidden = !matches;
+
+                if (matches) visibleCount += 1;
+            });
+
+            noResults.hidden = visibleCount > 0;
+        }
+
+        searchInput.addEventListener('input', filterVersions);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(location.search);
+            const version = params.get('version');
+            if (version) {
+                searchInput.value = version;
+                filterVersions();
+            }
+        });
+    </script>
+</body>
+</html>
+
             </ul>
         </div>
     </div>
