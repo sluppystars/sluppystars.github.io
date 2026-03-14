@@ -82,6 +82,17 @@
             overflow: hidden;
         }
 
+        /* Базовая обводка для соцсетей */
+        .social-link.telegram {
+            border-color: #0088cc;
+            border-width: 2px;
+        }
+
+        .social-link.tiktok {
+            border-color: #fe2c55;
+            border-width: 2px;
+        }
+
         .social-link i {
             font-size: 26px;
             position: relative;
@@ -96,7 +107,6 @@
         .social-link.telegram:hover {
             background: #0088cc;
             color: white;
-            border-color: #0088cc;
             transform: rotate(360deg) scale(1.1);
             box-shadow: 0 0 20px #0088cc;
         }
@@ -104,7 +114,6 @@
         .social-link.tiktok:hover {
             background: #fe2c55;
             color: white;
-            border-color: #fe2c55;
             transform: rotate(360deg) scale(1.1);
             box-shadow: 0 0 20px #fe2c55;
         }
@@ -200,25 +209,6 @@
             color: var(--muted);
         }
 
-        /* Счетчик доверия (баги) */
-        .trust-badge {
-            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
-            color: white;
-            padding: 8px 22px;
-            border-radius: 40px;
-            font-weight: 600;
-            font-size: 16px;
-            letter-spacing: 0.3px;
-            white-space: nowrap;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .trust-badge i {
-            color: var(--accent);
-            margin-right: 8px;
-        }
-
         .search {
             width: 100%;
             max-width: 280px;
@@ -304,9 +294,10 @@
             font-size: 20px;
             color: #272211;
             transition: all 0.2s ease;
-            cursor: default;
+            cursor: pointer;
             padding: 4px 8px;
             border-radius: 30px;
+            border: 2px solid transparent;
         }
 
         /* Эффект при наведении на номер версии */
@@ -314,6 +305,13 @@
             text-shadow: 0 0 8px var(--accent);
             transform: scale(1.05);
             background: rgba(255, 203, 34, 0.1);
+        }
+
+        /* Эффект нажатия на версию */
+        .version-number.click-effect {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* Live-индикатор */
@@ -429,10 +427,6 @@
                 width: 100%;
                 justify-content: center;
             }
-            .trust-badge {
-                width: 100%;
-                text-align: center;
-            }
             .fixed-social-bottom {
                 bottom: 20px;
                 right: 20px;
@@ -492,11 +486,6 @@
                     <span class="stat-number">1.0.2</span>
                     <span class="stat-label">последнее</span>
                 </div>
-            </div>
-
-            <!-- Счетчик доверия (баги) -->
-            <div class="trust-badge">
-                <i class="fa-solid fa-bug"></i> 12 багов исправлено
             </div>
         </header>
 
@@ -574,6 +563,19 @@
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
+
+            // Эффект нажатия на версию
+            document.querySelectorAll('.version-number').forEach(versionElement => {
+                versionElement.addEventListener('click', function(e) {
+                    // Добавляем класс с эффектом
+                    this.classList.add('click-effect');
+                    
+                    // Убираем класс через 1 секунду (плавно исчезает)
+                    setTimeout(() => {
+                        this.classList.remove('click-effect');
+                    }, 1000);
+                });
+            });
 
             // Фильтрация
             function filterVersions() {
@@ -659,9 +661,6 @@
                 searchInput.value = versionParam;
                 filterVersions();
             }
-
-            // Пересчет статистики (если потребуется динамически, но пока статика)
-            // Можно обновлять счетчик багов, если данные приходят с сервера
         })();
     </script>
 </body>
