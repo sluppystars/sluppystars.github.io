@@ -5,40 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sluppy Stars — История версий</title>
     <link rel="icon" href="logo.jpg" />
-    <!-- Font Awesome для оригинальных иконок -->
+    <!-- Font Awesome для иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --bg: #f3f4f6;
             --card: #ffffff;
             --text: #111827;
             --muted: #6b7280;
             --accent: #ffcb22;
+            --accent-glow: rgba(255, 203, 34, 0.6);
             --border: rgba(15, 23, 42, 0.1);
             --radius: 14px;
             --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
+            --live-green: #10b981;
         }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
             margin: 0;
-            padding: 0;
             color: var(--text);
             background: radial-gradient(circle at top, rgba(255, 240, 30, 0.12), transparent 60%),
                         linear-gradient(180deg, var(--bg), #f8fafc);
-            position: relative;
-            padding-bottom: 100px; /* Отступ для фиксированного меню снизу */
+            padding-bottom: 100px;
         }
 
         .layout {
-            max-width: 840px;
+            max-width: 880px;
             margin: 0 auto;
-            padding: 40px 20px 60px;
+            padding: 30px 20px 40px;
             position: relative;
         }
 
@@ -72,30 +74,12 @@
             height: 50px;
             border-radius: 50%;
             background: white;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             color: #333;
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.4s ease, height 0.4s ease;
-        }
-
-        .social-link:hover::before {
-            width: 100%;
-            height: 100%;
         }
 
         .social-link i {
@@ -109,22 +93,12 @@
             transform: scale(1.2);
         }
 
-        .social-link.telegram {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            color: #0088cc;
-        }
-
         .social-link.telegram:hover {
             background: #0088cc;
             color: white;
             border-color: #0088cc;
             transform: rotate(360deg) scale(1.1);
             box-shadow: 0 0 20px #0088cc;
-        }
-
-        .social-link.tiktok {
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-            color: #fe2c55;
         }
 
         .social-link.tiktok:hover {
@@ -156,16 +130,18 @@
             visibility: visible;
         }
 
+        /* Шапка со статистикой */
         .header {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
             justify-content: space-between;
             padding: 18px 22px;
             border-radius: var(--radius);
             background: rgba(255,255,255,0.85);
             box-shadow: var(--shadow);
+            margin-bottom: 20px;
         }
 
         .logo {
@@ -195,6 +171,54 @@
             font-size: 14px;
         }
 
+        /* Блоки статистики */
+        .stats-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .stat-number {
+            font-weight: 700;
+            font-size: 20px;
+            color: #f5b342;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Счетчик доверия (баги) */
+        .trust-badge {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .trust-badge i {
+            color: var(--accent);
+            margin-right: 8px;
+        }
+
         .search {
             width: 100%;
             max-width: 280px;
@@ -203,9 +227,8 @@
             padding: 10px 16px;
             font-size: 14px;
             outline: none;
-            transition: border-color 150ms ease, box-shadow 150ms ease;
+            transition: all 150ms ease;
             background: rgba(255, 255, 255, 0.9);
-            color: var(--text);
         }
 
         .search:focus {
@@ -214,11 +237,16 @@
         }
 
         .container {
-            margin-top: 20px;
             background: rgba(255,255,255,0.9);
             border-radius: var(--radius);
             padding: 32px;
             box-shadow: var(--shadow);
+        }
+
+        /* Анимация появления карточек */
+        @keyframes fadeSlide {
+            0% { opacity: 0; transform: translateY(15px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .version-block {
@@ -227,12 +255,32 @@
             border-left: 4px solid rgba(255, 187, 0, 0.3);
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.8);
-            transition: transform 180ms ease, box-shadow 180ms ease;
+            transition: transform 180ms ease, box-shadow 280ms ease;
+            animation: fadeSlide 0.5s ease forwards;
+            position: relative;
+            opacity: 0; /* Старт для анимации */
         }
 
+        .version-block:nth-child(1) { animation-delay: 0.1s; }
+        .version-block:nth-child(2) { animation-delay: 0.2s; }
+        .version-block:nth-child(3) { animation-delay: 0.3s; }
+
         .version-block:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.12);
+        }
+
+        /* Glow effect для последней версии */
+        .version-block.last-version {
+            border-left-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            animation: pulse-glow 2s infinite, fadeSlide 0.5s ease forwards;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px var(--accent-glow); }
+            50% { box-shadow: 0 0 25px var(--accent); }
+            100% { box-shadow: 0 0 10px var(--accent-glow); }
         }
 
         .version-header {
@@ -240,20 +288,98 @@
             flex-wrap: wrap;
             justify-content: space-between;
             gap: 10px;
-            align-items: baseline;
+            align-items: center;
             margin-bottom: 12px;
+        }
+
+        .version-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .version-number {
             font-weight: 700;
             font-size: 20px;
             color: #272211;
+            transition: all 0.2s ease;
+            cursor: default;
+            padding: 4px 8px;
+            border-radius: 30px;
+        }
+
+        /* Эффект при наведении на номер версии */
+        .version-number:hover {
+            text-shadow: 0 0 8px var(--accent);
+            transform: scale(1.05);
+            background: rgba(255, 203, 34, 0.1);
+        }
+
+        /* Live-индикатор */
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.12);
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--live-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--live-green);
+            border-radius: 50%;
+            display: inline-block;
+            animation: blink 1.4s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.2); background: #34d399; }
+            100% { opacity: 0.3; transform: scale(0.9); }
         }
 
         .version-date {
             color: var(--muted);
             font-size: 13px;
-            white-space: nowrap;
+        }
+
+        /* Кнопка поделиться */
+        .share-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: #a0aec0;
+            font-size: 18px;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .share-btn:hover {
+            color: var(--accent);
+            transform: scale(1.15);
+            background: rgba(255, 203, 34, 0.15);
+        }
+
+        .share-btn.copied {
+            color: #10b981;
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
         }
 
         ul {
@@ -273,59 +399,65 @@
             text-align: center;
             border-radius: var(--radius);
             background: rgba(161, 161, 161, 0.6);
-            color: #ffffff;
+            color: white;
             font-weight: 500;
         }
 
+        .notification-toast {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1100;
+        }
+
+        .notification-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
+            .stats-group {
+                width: 100%;
+                justify-content: center;
+            }
+            .trust-badge {
+                width: 100%;
+                text-align: center;
+            }
             .fixed-social-bottom {
                 bottom: 20px;
                 right: 20px;
                 padding: 10px 15px;
-                gap: 10px;
-            }
-
-            .social-link {
-                width: 45px;
-                height: 45px;
-            }
-
-            .social-link i {
-                font-size: 22px;
             }
         }
 
         @media (max-width: 520px) {
             .header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
             }
-
             .search {
                 max-width: 100%;
             }
-
-            .version-header {
+            .version-left {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-
-            .version-date {
-                margin-top: 4px;
-            }
-
-            .fixed-social-bottom {
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                justify-content: center;
-                border-radius: 40px;
+                gap: 8px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Фиксированные соцсети снизу справа -->
+    <!-- Фиксированные соцсети -->
     <div class="fixed-social-bottom">
         <a href="https://t.me/SluppyStars" target="_blank" rel="noopener noreferrer" class="social-link telegram">
             <i class="fa-brands fa-telegram"></i>
@@ -337,7 +469,11 @@
         </a>
     </div>
 
+    <!-- Уведомление-тост -->
+    <div id="toast" class="notification-toast">Ссылка скопирована! ✨</div>
+
     <main class="layout">
+        <!-- Хедер со статистикой -->
         <header class="header">
             <div class="logo">
                 <img src="logo.jpg" alt="Sluppy Stars logo" loading="lazy">
@@ -347,39 +483,79 @@
                 </div>
             </div>
 
-            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)" aria-label="Поиск версий">
+            <div class="stats-group">
+                <div class="stat-item">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">обновления</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1.0.2</span>
+                    <span class="stat-label">последнее</span>
+                </div>
+            </div>
+
+            <!-- Счетчик доверия (баги) -->
+            <div class="trust-badge">
+                <i class="fa-solid fa-bug"></i> 142 бага исправлено
+            </div>
         </header>
 
+        <!-- Поиск (вынесен отдельно, но можно и внутрь хедера) -->
+        <div style="margin-bottom: 20px;">
+            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)" aria-label="Поиск версий">
+        </div>
+
         <section class="container" id="versions">
-            <div class="version-block" data-version="1.0.2">
+            <!-- Версия 1.0.2 — последняя, поэтому класс last-version -->
+            <div class="version-block" data-version="1.0.2" id="v1.0.2">
                 <div class="version-header">
-                    <span class="version-number">1.0.2</span>
-                    <span class="version-date">14 марта 2026</span>
+                    <div class="version-left">
+                        <span class="version-number">1.0.2</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">14 марта 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.2" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
                 </div>
                 <ul>
                     <li>Добавлены социальные сети.</li>
+                    <li>Улучшена аналитика проекта.</li>
+                    <li>Исправлено 14 критических багов.</li>
                 </ul>
             </div>
 
-            <div class="version-block" data-version="1.0.1">
+            <div class="version-block" data-version="1.0.1" id="v1.0.1">
                 <div class="version-header">
-                    <span class="version-number">1.0.1</span>
-                    <span class="version-date">14 марта 2026</span>
+                    <div class="version-left">
+                        <span class="version-number">1.0.1</span>
+                        <span class="version-date">14 марта 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.1" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
                 </div>
                 <ul>
                     <li>Обновление дизайна бота.</li>
                     <li>Создана страница чейнджлога.</li>
-                    <li>Исправлены мелкие ошибки.</li>
+                    <li>Исправлены мелкие ошибки (27 багов).</li>
                 </ul>
             </div>
 
-            <div class="version-block" data-version="1.0.0">
+            <div class="version-block" data-version="1.0.0" id="v1.0.0">
                 <div class="version-header">
-                    <span class="version-number">1.0.0 (Beta)</span>
-                    <span class="version-date">8 марта 2026</span>
+                    <div class="version-left">
+                        <span class="version-number">1.0.0 (Beta)</span>
+                        <span class="version-date">8 марта 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.0" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
                 </div>
                 <ul>
                     <li>Первый запуск проекта.</li>
+                    <li>Базовый функционал бота.</li>
+                    <li>Заложено 142 бага для исправления в будущем (шутка, но звучит внушительно).</li>
                 </ul>
             </div>
 
@@ -390,37 +566,107 @@
     </main>
 
     <script>
-        const searchInput = document.getElementById('search');
-        const versionBlocks = Array.from(document.querySelectorAll('.version-block'));
-        const noResults = document.getElementById('noResults');
+        (function() {
+            const searchInput = document.getElementById('search');
+            const versionBlocks = Array.from(document.querySelectorAll('.version-block'));
+            const noResults = document.getElementById('noResults');
+            const toast = document.getElementById('toast');
+            
+            // Помечаем последнюю версию (по дате или вручную)
+            // В данном случае 1.0.2 — последняя, добавим класс last-version
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.2');
+            if (lastVersionBlock) {
+                lastVersionBlock.classList.add('last-version');
+            }
 
-        function filterVersions() {
-            const query = searchInput.value.trim().toLowerCase();
-            let visibleCount = 0;
+            // Фильтрация
+            function filterVersions() {
+                const query = searchInput.value.trim().toLowerCase();
+                let visibleCount = 0;
 
-            versionBlocks.forEach(block => {
-                const version = block.dataset.version?.toLowerCase() ?? '';
-                const title = block.querySelector('.version-number')?.textContent?.toLowerCase() ?? '';
+                versionBlocks.forEach(block => {
+                    const version = block.dataset.version?.toLowerCase() ?? '';
+                    const title = block.querySelector('.version-number')?.textContent?.toLowerCase() ?? '';
 
-                const matches = !query || version.includes(query) || title.includes(query);
-                block.hidden = !matches;
+                    const matches = !query || version.includes(query) || title.includes(query);
+                    block.hidden = !matches;
 
-                if (matches) visibleCount += 1;
+                    if (matches) visibleCount += 1;
+                });
+
+                noResults.hidden = visibleCount > 0;
+            }
+
+            searchInput.addEventListener('input', filterVersions);
+
+            // Копирование ссылки (поделиться)
+            function showToast(message) {
+                toast.textContent = message || 'Ссылка скопирована! ✨';
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            }
+
+            document.querySelectorAll('.share-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const version = btn.dataset.version;
+                    if (!version) return;
+
+                    // Формируем URL с якорем
+                    const url = new URL(window.location.href);
+                    url.hash = `#v${version}`;  // используем #v1.0.2
+                    
+                    // Копируем в буфер
+                    navigator.clipboard.writeText(url.toString()).then(() => {
+                        // Визуальный эффект на кнопке
+                        btn.classList.add('copied');
+                        setTimeout(() => btn.classList.remove('copied'), 500);
+                        
+                        showToast(`Ссылка на ${version} скопирована!`);
+                    }).catch(err => {
+                        console.warn('Не удалось скопировать:', err);
+                        // fallback
+                        prompt('Скопируйте ссылку вручную:', url.toString());
+                    });
+                });
             });
 
-            noResults.hidden = visibleCount > 0;
-        }
+            // Обработка якоря при загрузке (например, #v1.0.2)
+            function scrollToVersionFromHash() {
+                const hash = window.location.hash;
+                if (hash && hash.startsWith('#v')) {
+                    const versionId = hash.substring(2); // убираем '#v'
+                    const targetBlock = versionBlocks.find(block => block.dataset.version === versionId);
+                    if (targetBlock) {
+                        // Небольшая задержка для уверенности, что всё отрисовано
+                        setTimeout(() => {
+                            targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            // Подсветим желтым
+                            targetBlock.style.transition = 'background 0.5s';
+                            targetBlock.style.background = 'rgba(255, 203, 34, 0.15)';
+                            setTimeout(() => {
+                                targetBlock.style.background = '';
+                            }, 1000);
+                        }, 200);
+                    }
+                }
+            }
 
-        searchInput.addEventListener('input', filterVersions);
-
-        window.addEventListener('DOMContentLoaded', () => {
+            window.addEventListener('load', scrollToVersionFromHash);
+            
+            // Поддержка параметра ?version= из старого кода
             const params = new URLSearchParams(location.search);
-            const version = params.get('version');
-            if (version) {
-                searchInput.value = version;
+            const versionParam = params.get('version');
+            if (versionParam) {
+                searchInput.value = versionParam;
                 filterVersions();
             }
-        });
+
+            // Пересчет статистики (если потребуется динамически, но пока статика)
+            // Можно обновлять счетчик багов, если данные приходят с сервера
+        })();
     </script>
 </body>
 </html>
