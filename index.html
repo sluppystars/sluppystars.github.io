@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,27 +16,27 @@
         }
 
         :root {
-            --bg: #ffffff;
-            --card: #f8f9ff;
-            --text: #111827;
-            --muted: #6b7280;
-            --accent: #ffcb22;
-            --accent-glow: rgba(255, 203, 34, 0.6);
-            --border: rgba(15, 23, 42, 0.1);
-            --radius: 14px;
-            --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --accent: #fbbf24;
+            --accent-glow: rgba(251, 191, 36, 0.25);
+            --border: rgba(0, 0, 0, 0.05);
+            --radius: 20px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --live-green: #10b981;
-            --header-bg: #ffffff; 
-            --container-bg: #ffffff; 
-            --version-bg: #f8f9ff;
-            --stat-item-bg: #f8f9ff;
-            --stat-item-border: rgba(0,0,0,0.04);
-            --search-bg: rgba(255, 255, 255, 0.9);
-            --search-border: rgba(15, 23, 42, 0.18);
-            --social-bg: rgba(255, 255, 255, 0.9);
-            --social-border: rgba(255, 187, 0, 0.2);
-            --tooltip-bg: rgba(0, 0, 0, 0.8);
-            --no-results-bg: rgba(161, 161, 161, 0.6);
+            --header-bg: #ffffff;
+            --container-bg: #ffffff;
+            --version-bg: #ffffff;
+            --stat-item-bg: #f8fafc;
+            --stat-item-border: rgba(0, 0, 0, 0.03);
+            --search-bg: #ffffff;
+            --search-border: rgba(0, 0, 0, 0.1);
+            --social-bg: #ffffff;
+            --social-border: rgba(251, 191, 36, 0.3);
+            --tooltip-bg: #1e293b;
+            --no-results-bg: #94a3b8;
             --toast-bg: #1e293b;
         }
 
@@ -68,8 +69,7 @@
             min-height: 100vh;
             margin: 0;
             color: var(--text);
-            background: radial-gradient(circle at top, rgba(255, 240, 30, 0.12), transparent 60%),
-                        linear-gradient(180deg, var(--bg), #1a1e2b 150%);
+            background: var(--bg);
             padding-bottom: 100px;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
@@ -211,7 +211,6 @@
             visibility: visible;
         }
 
-        /* Шапка со статистикой */
         .header {
             display: flex;
             flex-wrap: wrap;
@@ -221,9 +220,10 @@
             padding: 18px 22px;
             border-radius: var(--radius);
             background: var(--header-bg);
-            box-shadow: var(--shadow);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
             margin-bottom: 20px;
             transition: background-color 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.02);
         }
 
         .logo {
@@ -268,7 +268,7 @@
             background: var(--stat-item-bg);
             padding: 8px 18px;
             border-radius: 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
             border: 1px solid var(--stat-item-border);
             transition: background-color 0.3s ease;
         }
@@ -294,7 +294,7 @@
         .search {
             width: 100%;
             max-width: 400px;
-            border: 2px solid var(--search-border);
+            border: 1px solid var(--search-border);
             border-radius: 999px;
             padding: 14px 24px;
             font-size: 16px;
@@ -303,7 +303,7 @@
             background: var(--search-bg);
             color: var(--text);
             text-align: center;
-            box-shadow: var(--shadow);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
         }
 
         .search:focus {
@@ -326,16 +326,24 @@
 
         /* Анимация появления карточек */
         @keyframes fadeSlide {
-            0% { opacity: 0; transform: translateY(15px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .version-block {
             margin: 30px 0;
             padding: 22px 22px 22px 18px;
-            border-left: 4px solid rgba(255, 187, 0, 0.3);
-            border-radius: 12px;
+            border-left: 4px solid rgba(251, 191, 36, 0.2);
+            border-radius: 16px;
             background: var(--version-bg);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
             transition: transform 180ms ease, box-shadow 280ms ease, background-color 0.3s ease;
             animation: fadeSlide 0.5s ease forwards;
             position: relative;
@@ -346,13 +354,21 @@
             border-left-color: rgba(255, 217, 102, 0.3);
         }
 
-        .version-block:nth-child(1) { animation-delay: 0.1s; }
-        .version-block:nth-child(2) { animation-delay: 0.2s; }
-        .version-block:nth-child(3) { animation-delay: 0.3s; }
+        .version-block:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .version-block:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .version-block:nth-child(3) {
+            animation-delay: 0.3s;
+        }
 
         .version-block:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
         }
 
         /* Glow effect для последней версии */
@@ -363,9 +379,17 @@
         }
 
         @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px var(--accent-glow); }
-            50% { box-shadow: 0 0 25px var(--accent); }
-            100% { box-shadow: 0 0 10px var(--accent-glow); }
+            0% {
+                box-shadow: 0 0 10px var(--accent-glow);
+            }
+
+            50% {
+                box-shadow: 0 0 25px var(--accent);
+            }
+
+            100% {
+                box-shadow: 0 0 10px var(--accent-glow);
+            }
         }
 
         .version-header {
@@ -433,9 +457,21 @@
         }
 
         @keyframes blink {
-            0% { opacity: 0.3; transform: scale(0.9); }
-            50% { opacity: 1; transform: scale(1.2); background: #34d399; }
-            100% { opacity: 0.3; transform: scale(0.9); }
+            0% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+                background: #34d399;
+            }
+
+            100% {
+                opacity: 0.3;
+                transform: scale(0.9);
+            }
         }
 
         .version-date {
@@ -470,9 +506,17 @@
         }
 
         @keyframes pop {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.3); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         ul {
@@ -505,7 +549,7 @@
             padding: 12px 24px;
             border-radius: 40px;
             font-size: 14px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(100px);
             opacity: 0;
             transition: all 0.3s ease;
@@ -522,11 +566,13 @@
                 width: 100%;
                 justify-content: center;
             }
+
             .fixed-social-bottom {
                 bottom: 20px;
                 right: 20px;
                 padding: 10px 15px;
             }
+
             .theme-toggle {
                 top: 10px;
                 right: 10px;
@@ -538,11 +584,13 @@
                 flex-direction: column;
                 align-items: stretch;
             }
+
             .version-left {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 8px;
             }
+
             .theme-toggle {
                 position: fixed;
                 top: auto;
@@ -552,6 +600,7 @@
         }
     </style>
 </head>
+
 <body data-theme="light">
     <!-- Кнопка переключения темы -->
     <div class="theme-toggle" id="themeToggle">
@@ -600,7 +649,8 @@
 
         <!-- Поиск по центру -->
         <div class="search-container">
-            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)" aria-label="Поиск версий">
+            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)"
+                aria-label="Поиск версий">
         </div>
 
         <section class="container" id="versions">
@@ -660,13 +710,13 @@
     </main>
 
     <script>
-        (function() {
+        (function () {
             const searchInput = document.getElementById('search');
             const versionBlocks = Array.from(document.querySelectorAll('.version-block'));
             const noResults = document.getElementById('noResults');
             const toast = document.getElementById('toast');
             const themeToggle = document.getElementById('themeToggle');
-            
+
             // Помечаем последнюю версию (по дате или вручную)
             const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.2');
             if (lastVersionBlock) {
@@ -675,7 +725,7 @@
 
             // Эффект нажатия на версию
             document.querySelectorAll('.version-number').forEach(versionElement => {
-                versionElement.addEventListener('click', function(e) {
+                versionElement.addEventListener('click', function (e) {
                     this.classList.add('click-effect');
                     setTimeout(() => {
                         this.classList.remove('click-effect');
@@ -714,13 +764,13 @@
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     const version = btn.dataset.version;
                     if (!version) return;
 
                     const url = new URL(window.location.href);
                     url.hash = `#v${version}`;
-                    
+
                     navigator.clipboard.writeText(url.toString()).then(() => {
                         btn.classList.add('copied');
                         setTimeout(() => btn.classList.remove('copied'), 500);
@@ -736,11 +786,11 @@
             function setTheme(theme) {
                 document.body.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
-                
+
                 const sunIcon = themeToggle.querySelector('.fa-sun');
                 const moonIcon = themeToggle.querySelector('.fa-moon');
                 const text = themeToggle.querySelector('span');
-                
+
                 if (theme === 'dark') {
                     sunIcon.style.opacity = '0.5';
                     moonIcon.style.opacity = '1';
@@ -782,7 +832,7 @@
             }
 
             window.addEventListener('load', scrollToVersionFromHash);
-            
+
             // Поддержка параметра ?version=
             const params = new URLSearchParams(location.search);
             const versionParam = params.get('version');
@@ -793,4 +843,5 @@
         })();
     </script>
 </body>
+
 </html>
