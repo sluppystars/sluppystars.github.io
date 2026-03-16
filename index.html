@@ -637,11 +637,11 @@
 
             <div class="stats-group">
                 <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">обновления</span>
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">обновлений</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1.0.3</span>
+                    <span class="stat-number">1.0.4</span>
                     <span class="stat-label">последнее</span>
                 </div>
             </div>
@@ -654,11 +654,28 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.4" id="v1.0.4">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.0.4</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">16 марта 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.4" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Увеличен реферальный процент: c 2% до 25%.</li>
+                    <li>Исправлен темный и светлый режим.</li>
+                    <li>Кнопки на телефоне больше не пропадают.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.3" id="v1.0.3">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.3</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">15 марта 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.3" title="Поделиться этой версией">
@@ -734,7 +751,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.3');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.4');
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
