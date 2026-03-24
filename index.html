@@ -654,11 +654,30 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.6" id="v1.0.6">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.0.6</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">24 марта 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.6" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Запустили 2 новых бота.</li>
+                    <li>1: @SluppyRates_bot - курс валют в реальном времени, долбавляйте в группы и знайте актуальные курсы в реальном времени.</li>
+                    <li>2: @SearchVideos_bot - скачивайте видео из TikTok, YouTube Shorts, Instagram Reels, так же есть поддержка групп.</li>
+                    <li>Запустили конкурс "Оплата за просмотры в социальных сетях".</li>
+                    <li>Исправлены переходы по ссылкам на сайте.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.5" id="v1.0.5">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.5</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">19 марта 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.5" title="Поделиться этой версией">
@@ -766,7 +785,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.5');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.6');
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
