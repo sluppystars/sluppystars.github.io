@@ -637,11 +637,11 @@
 
             <div class="stats-group">
                 <div class="stat-item">
-                    <span class="stat-number">7</span>
+                    <span class="stat-number">8</span>
                     <span class="stat-label">обновлений</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1.0.6</span>
+                    <span class="stat-number">1.0.7</span>
                     <span class="stat-label">последнея</span>
                 </div>
             </div>
@@ -654,11 +654,27 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.7" id="v1.0.7">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.0.7</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">1 апреля 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.7" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Сделан новый бот для покупки удаленных и обычных подарков.</li>
+                    <li>Возможность отправления подарка анонимно и со своим текстом.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.6" id="v1.0.6">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.6</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">24 марта 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.6" title="Поделиться этой версией">
@@ -785,7 +801,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.6');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.7');
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
