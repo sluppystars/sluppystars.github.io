@@ -637,11 +637,11 @@
 
             <div class="stats-group">
                 <div class="stat-item">
-                    <span class="stat-number">8</span>
+                    <span class="stat-number">9</span>
                     <span class="stat-label">обновлений</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1.0.7</span>
+                    <span class="stat-number">1.0.8</span>
                     <span class="stat-label">последнея</span>
                 </div>
             </div>
@@ -654,11 +654,32 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.8" id="v1.0.8">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.0.8</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">5 апреля 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.8" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Исправлена ошибка, при которой каждое слово в чате с ботом вызывало меню.</li>
+                    <li>Исправлена ошибка, при которой люди не могли найти пользователя который поменял юзернейм.</li>
+                    <li>Убрана возможность подарить подарок анонимно, из-за некоторых причин.</li>
+                    <li>Исправлена вкладка "Последние покупки", сейчас показывает настоящие данные.</li>
+                    <li>Добавлено подтверждение покупки.</li>
+                    <li>При первом использовании бота добавлена возможность согласиться с Пользовательским соглашением и Политикой конфиденциальности.</li>
+                    <li>И еще ряд мелких улучшений и исправлений.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.7" id="v1.0.7">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.7</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">1 апреля 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.7" title="Поделиться этой версией">
@@ -666,7 +687,7 @@
                     </button>
                 </div>
                 <ul>
-                    <li>Сделан новый бот для покупки удаленных и обычных подарков.</li>
+                    <li>Сделан новый бот для покупки удаленных и обычных подарков. @SluppyGifts_bot</li>
                     <li>Возможность отправления подарка анонимно и со своим текстом.</li>
                 </ul>
             </div>
@@ -801,7 +822,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.7');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.8');
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
