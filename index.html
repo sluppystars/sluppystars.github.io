@@ -637,11 +637,11 @@
 
             <div class="stats-group">
                 <div class="stat-item">
-                    <span class="stat-number">9</span>
+                    <span class="stat-number">10</span>
                     <span class="stat-label">обновлений</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1.0.8</span>
+                    <span class="stat-number">1.0.9</span>
                     <span class="stat-label">последнея</span>
                 </div>
             </div>
@@ -654,11 +654,32 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.0.9" id="v1.0.9">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.0.9</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">5 апреля 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.0.9" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Исправлено скачивание видео из соц сетей в боте: @SearchVideos_bot.</li>
+                    <li>Улучшен интерфейс бота: @SearchVideos_bot.</li>
+                    <li>Улучшен интерфейс бота: @SluppyGifts_bot.</li>
+                    <li>Исправлено неверные данные в боте: @SluppyRates_bot.</li>
+                    <li>Убраны лишние материалы, для быстрой и простой проверки курса в боте: @SluppyRates_bot.</li>
+                    <li>Исправлена оптимизация серверов, боты работают быстрее.</li>
+                    <li>И еще ряд мелких улучшений и исправлений для ботов.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.8" id="v1.0.8">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.8</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">5 апреля 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.8" title="Поделиться этой версией">
@@ -822,7 +843,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.8');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.9');
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
