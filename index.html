@@ -637,11 +637,11 @@
 
             <div class="stats-group">
                 <div class="stat-item">
-                    <span class="stat-number">10</span>
+                    <span class="stat-number">11</span>
                     <span class="stat-label">обновлений</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1.0.9</span>
+                    <span class="stat-number">1.1.0</span>
                     <span class="stat-label">последнея</span>
                 </div>
             </div>
@@ -654,11 +654,34 @@
         </div>
 
         <section class="container" id="versions">
+            <div class="version-block" data-version="1.1.0" id="v1.1.0">
+                <div class="version-header">
+                    <div class="version-left">
+                        <span class="version-number">1.1.0</span>
+                        <span class="live-badge"><span class="live-dot"></span> live</span>
+                        <span class="version-date">5 апреля 2026</span>
+                    </div>
+                    <button class="share-btn" data-version="1.1.0" title="Поделиться этой версией">
+                        <i class="fa-solid fa-link"></i>
+                    </button>
+                </div>
+                <ul>
+                    <li>Самое крупное обновление бота @SluppyGames_bot.</li>
+                    <li>Добавлена валюта Sluppy Coins.</li>
+                    <li>Добавлены команды для фарма Sluppy Coins.</li>
+                    <li>Добавлены команды для просмотра таблицы лидеров</li>
+                    <li>Добавлены команды для просмотра профиля собеседника.</li>
+                    <li>Добавлены кнопки для покупки Sluppy Premium статуса.</li>
+                    <li>Добавлены кнопки для выбора премиум эмодзи перед ником.</li>
+                    <li>Напиши сикс в чат, и получи ответ от бота.</li>
+                    <li>Исправили много ошибок и недочетов.</li>
+                </ul>
+            </div>
+
             <div class="version-block" data-version="1.0.9" id="v1.0.9">
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.9</span>
-                        <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">5 апреля 2026</span>
                     </div>
                     <button class="share-btn" data-version="1.0.9" title="Поделиться этой версией">
@@ -843,7 +866,7 @@
             const themeToggle = document.getElementById('themeToggle');
 
             // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.0.9');
+            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.1.0'); 
             if (lastVersionBlock) {
                 lastVersionBlock.classList.add('last-version');
             }
