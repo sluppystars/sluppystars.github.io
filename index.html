@@ -2,262 +2,251 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sluppy Stars — История версий</title>
     <link rel="icon" href="logo.jpg" />
-    <!-- Font Awesome для иконок -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Font Awesome 6 (бесплатно) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
+        /* ----- reset & base ----- */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         :root {
-            --bg: #f5f7fa;
+            --bg: #f4f6fc;
             --card: #ffffff;
-            --text: #1e293b;
-            --muted: #64748b;
-            --accent: #fbbf24;
-            --accent-glow: rgba(251, 191, 36, 0.25);
-            --border: rgba(0, 0, 0, 0.05);
-            --radius: 20px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --live-green: #10b981;
-            --header-bg: #ffffff;
-            --container-bg: #ffffff;
+            --text: #0b1a33;
+            --muted: #4a5b7a;
+            --accent: #f7b731;
+            --accent-soft: #fce6b0;
+            --accent-glow: rgba(247, 183, 49, 0.35);
+            --border-light: rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 20px 40px -12px rgba(0, 20, 50, 0.12);
+            --radius: 28px;
+            --radius-sm: 18px;
+            --live: #22c55e;
+            --header-bg: rgba(255, 255, 255, 0.7);
             --version-bg: #ffffff;
-            --stat-item-bg: #f8fafc;
-            --stat-item-border: rgba(0, 0, 0, 0.03);
+            --stat-bg: #f0f4fe;
             --search-bg: #ffffff;
-            --search-border: rgba(0, 0, 0, 0.1);
+            --search-border: #dce3f0;
             --social-bg: #ffffff;
-            --social-border: rgba(251, 191, 36, 0.3);
-            --tooltip-bg: #1e293b;
-            --no-results-bg: #94a3b8;
-            --toast-bg: #1e293b;
+            --social-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            --toast-bg: #0b1a33;
+            --tooltip-bg: #0b1a33;
+            --no-results-bg: rgba(75, 95, 130, 0.08);
+            --transition: 0.25s cubic-bezier(0.3, 0, 0.2, 1);
         }
 
         [data-theme="dark"] {
-            --bg: #1a1e2b;
-            --card: #2d2d3a;
-            --text: #e5e7eb;
-            --muted: #9ca3af;
-            --accent: #ffd966;
-            --accent-glow: rgba(255, 217, 102, 0.5);
-            --border: rgba(255, 255, 255, 0.1);
-            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            --live-green: #34d399;
-            --header-bg: rgba(30, 35, 48, 0.9);
-            --container-bg: rgba(30, 35, 48, 0.9);
-            --version-bg: rgba(40, 45, 60, 0.8);
-            --stat-item-bg: #2d2d3a;
-            --stat-item-border: rgba(255, 255, 255, 0.05);
-            --search-bg: rgba(40, 45, 60, 0.9);
-            --search-border: rgba(255, 255, 255, 0.1);
-            --social-bg: rgba(30, 35, 48, 0.9);
-            --social-border: rgba(255, 217, 102, 0.2);
-            --tooltip-bg: rgba(0, 0, 0, 0.9);
-            --no-results-bg: rgba(80, 85, 100, 0.6);
-            --toast-bg: #2d2d3a;
+            --bg: #0e1626;
+            --card: #1a2337;
+            --text: #edf2f9;
+            --muted: #9aabbf;
+            --accent: #facc15;
+            --accent-soft: #3a3a2a;
+            --accent-glow: rgba(250, 204, 21, 0.3);
+            --border-light: rgba(255, 255, 255, 0.06);
+            --shadow-card: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+            --header-bg: rgba(22, 30, 46, 0.8);
+            --version-bg: #1a2337;
+            --stat-bg: #212e48;
+            --search-bg: #1a2337;
+            --search-border: #2f3d5a;
+            --social-bg: #1a2337;
+            --social-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --toast-bg: #2a3a55;
+            --tooltip-bg: #0b1629;
+            --no-results-bg: rgba(255, 255, 255, 0.04);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            min-height: 100vh;
-            margin: 0;
-            color: var(--text);
             background: var(--bg);
-            padding-bottom: 100px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            min-height: 100vh;
+            padding-bottom: 140px;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
         }
 
         .layout {
-            max-width: 880px;
+            max-width: 940px;
             margin: 0 auto;
-            padding: 30px 20px 40px;
+            padding: 28px 24px 60px;
             position: relative;
         }
 
-        /* Кнопка переключения темы */
+        /* ----- theme toggle (улучшен) ----- */
         .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
-            background: var(--social-bg);
-            border: 2px solid var(--accent);
-            border-radius: 50px;
-            padding: 8px 16px;
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1100;
+            background: var(--card);
+            border: 1px solid var(--border-light);
+            border-radius: 60px;
+            padding: 10px 20px 10px 18px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+            backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition);
             color: var(--text);
+            font-weight: 500;
+            font-size: 14px;
         }
 
         .theme-toggle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--accent-glow);
+            transform: scale(1.04);
+            box-shadow: 0 0 0 2px var(--accent), var(--shadow-card);
         }
 
         .theme-toggle i {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--accent);
         }
 
-        /* Фиксированное меню соцсетей снизу */
+        .theme-toggle .theme-label {
+            min-width: 58px;
+        }
+
+        /* ----- social fixed (стильный) ----- */
         .fixed-social-bottom {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 32px;
+            right: 32px;
             display: flex;
-            gap: 15px;
-            z-index: 1000;
+            gap: 14px;
+            z-index: 1050;
             background: var(--social-bg);
-            padding: 15px 20px;
-            border-radius: 60px;
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow);
-            border: 1px solid var(--social-border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            padding: 14px 22px;
+            border-radius: 80px;
+            backdrop-filter: blur(14px);
+            box-shadow: var(--social-shadow);
+            border: 1px solid var(--border-light);
+            transition: all var(--transition);
         }
 
         .fixed-social-bottom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.2);
         }
 
         .social-link {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: white;
-            transition: all 0.4s ease;
+            background: var(--bg);
+            color: var(--text);
             text-decoration: none;
-            color: #333;
             border: 2px solid transparent;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+            font-size: 24px;
         }
 
-        [data-theme="dark"] .social-link {
-            background: #2d2d3a;
-            color: #e5e7eb;
-        }
-
-        /* Базовая обводка для соцсетей */
         .social-link.telegram {
-            border-color: #0088cc;
-            border-width: 2px;
+            border-color: #1e96e0;
         }
-
         .social-link.tiktok {
             border-color: #fe2c55;
-            border-width: 2px;
         }
 
-        .social-link i {
-            font-size: 26px;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .social-link:hover i {
-            transform: scale(1.2);
-        }
-
-        .social-link.telegram:hover {
-            background: #0088cc;
-            color: white;
+        .social-link:hover {
             transform: rotate(360deg) scale(1.1);
-            box-shadow: 0 0 20px #0088cc;
+            color: #fff;
         }
-
+        .social-link.telegram:hover {
+            background: #1e96e0;
+            box-shadow: 0 0 20px #1e96e0;
+        }
         .social-link.tiktok:hover {
             background: #fe2c55;
-            color: white;
-            transform: rotate(360deg) scale(1.1);
             box-shadow: 0 0 20px #fe2c55;
         }
 
         .social-link .tooltip {
             position: absolute;
-            bottom: -40px;
+            bottom: -38px;
             background: var(--tooltip-bg);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.25s;
             white-space: nowrap;
             pointer-events: none;
+            font-weight: 500;
         }
-
         .social-link:hover .tooltip {
-            bottom: -30px;
             opacity: 1;
             visibility: visible;
+            bottom: -32px;
         }
 
+        /* ----- header ----- */
         .header {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
             justify-content: space-between;
-            padding: 18px 22px;
+            padding: 20px 28px;
             border-radius: var(--radius);
             background: var(--header-bg);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-card);
+            margin-bottom: 32px;
+            border: 1px solid var(--border-light);
+            transition: background var(--transition);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
 
         .logo img {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
             object-fit: cover;
-            border: 1px solid rgba(255, 208, 0, 0.12);
+            border: 2px solid var(--accent-soft);
+            box-shadow: 0 4px 12px rgba(247, 183, 49, 0.2);
         }
 
         .title {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 26px;
+            font-weight: 700;
             letter-spacing: -0.02em;
-            margin: 0;
-            color: var(--text);
+            background: linear-gradient(135deg, var(--text), var(--muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            color: var(--muted);
-            margin: 4px 0 0;
             font-size: 14px;
+            color: var(--muted);
+            margin-top: 2px;
+            font-weight: 400;
         }
 
-        /* Блоки статистики */
         .stats-group {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
@@ -265,138 +254,162 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            background: var(--stat-item-bg);
-            padding: 8px 18px;
-            border-radius: 40px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--stat-item-border);
-            transition: background-color 0.3s ease;
+            background: var(--stat-bg);
+            padding: 6px 20px 6px 18px;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+            transition: background var(--transition);
+            backdrop-filter: blur(4px);
         }
 
         .stat-number {
             font-weight: 700;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--accent);
         }
 
         .stat-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--muted);
+            font-weight: 500;
         }
 
-        /* Поиск по центру */
+        /* ----- поиск ----- */
         .search-container {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
+            margin: 28px 0 32px;
         }
 
         .search {
             width: 100%;
-            max-width: 400px;
+            max-width: 440px;
             border: 1px solid var(--search-border);
-            border-radius: 999px;
-            padding: 14px 24px;
+            border-radius: 80px;
+            padding: 16px 28px;
             font-size: 16px;
-            outline: none;
-            transition: all 150ms ease;
             background: var(--search-bg);
             color: var(--text);
             text-align: center;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+            box-shadow: var(--shadow-card);
+            transition: all var(--transition);
+            font-weight: 450;
+            letter-spacing: 0.01em;
         }
 
         .search:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 4px var(--accent-glow);
+            box-shadow: 0 0 0 5px var(--accent-glow), var(--shadow-card);
+            outline: none;
         }
-
         .search::placeholder {
             color: var(--muted);
-            opacity: 0.7;
+            opacity: 0.5;
         }
 
+        /* ----- контейнер версий ----- */
         .container {
-            background: var(--container-bg);
+            background: var(--card);
             border-radius: var(--radius);
-            padding: 32px;
-            box-shadow: var(--shadow);
-            transition: background-color 0.3s ease;
+            padding: 36px 32px;
+            box-shadow: var(--shadow-card);
+            transition: background var(--transition);
+            border: 1px solid var(--border-light);
         }
 
-        /* Анимация появления карточек */
-        @keyframes fadeSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* анимация появления */
+        @keyframes fadeSlideUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .version-block {
-            margin: 30px 0;
-            padding: 22px 22px 22px 18px;
-            border-left: 4px solid rgba(251, 191, 36, 0.2);
-            border-radius: 16px;
+            margin: 36px 0;
+            padding: 28px 28px 22px 28px;
+            border-radius: var(--radius-sm);
             background: var(--version-bg);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-            transition: transform 180ms ease, box-shadow 280ms ease, background-color 0.3s ease;
-            animation: fadeSlide 0.5s ease forwards;
-            position: relative;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-light);
+            transition: all var(--transition);
+            animation: fadeSlideUp 0.5s ease forwards;
             opacity: 0;
+            position: relative;
         }
 
-        [data-theme="dark"] .version-block {
-            border-left-color: rgba(255, 217, 102, 0.3);
-        }
-
-        .version-block:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .version-block:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .version-block:nth-child(3) {
-            animation-delay: 0.3s;
-        }
+        .version-block:nth-child(1) { animation-delay: 0.05s; }
+        .version-block:nth-child(2) { animation-delay: 0.10s; }
+        .version-block:nth-child(3) { animation-delay: 0.15s; }
+        .version-block:nth-child(4) { animation-delay: 0.20s; }
+        .version-block:nth-child(5) { animation-delay: 0.25s; }
+        .version-block:nth-child(6) { animation-delay: 0.30s; }
+        .version-block:nth-child(7) { animation-delay: 0.35s; }
+        .version-block:nth-child(8) { animation-delay: 0.40s; }
+        .version-block:nth-child(9) { animation-delay: 0.45s; }
+        .version-block:nth-child(10) { animation-delay: 0.50s; }
+        .version-block:nth-child(11) { animation-delay: 0.55s; }
 
         .version-block:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -16px rgba(0, 20, 40, 0.18);
+            border-color: var(--accent-soft);
         }
 
-        /* Glow effect для последней версии */
+        /* последняя версия — glow */
         .version-block.last-version {
-            border-left-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            animation: pulse-glow 2s infinite, fadeSlide 0.5s ease forwards;
+            border-left: 6px solid var(--accent);
+            box-shadow: 0 0 0 1px var(--accent), 0 16px 40px -12px var(--accent-glow);
+            animation: pulseGlow 2.4s infinite, fadeSlideUp 0.5s ease forwards;
         }
 
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 10px var(--accent-glow);
-            }
-
-            50% {
-                box-shadow: 0 0 25px var(--accent);
-            }
-
-            100% {
-                box-shadow: 0 0 10px var(--accent-glow);
-            }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 1px var(--accent), 0 0 20px var(--accent-glow); }
+            50% { box-shadow: 0 0 0 2px var(--accent), 0 0 40px var(--accent); }
+            100% { box-shadow: 0 0 0 1px var(--accent), 0 0 20px var(--accent-glow); }
         }
 
+        /* ----- ЗАГОЛОВКИ ОБНОВЛЕНИЙ (главное улучшение) ----- */
+        .update-headline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .update-headline .headline-icon {
+            font-size: 26px;
+            color: var(--accent);
+            width: 40px;
+            text-align: center;
+        }
+
+        .update-headline h3 {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            margin: 0;
+        }
+
+        .update-headline .headline-badge {
+            margin-left: auto;
+            background: var(--accent-soft);
+            color: var(--text);
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border: 1px solid var(--accent);
+        }
+
+        /* версия + дата */
         .version-header {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 10px;
             align-items: center;
             margin-bottom: 12px;
         }
@@ -404,156 +417,142 @@
         .version-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
         .version-number {
             font-weight: 700;
-            font-size: 20px;
+            font-size: 22px;
             color: var(--text);
-            transition: all 0.2s ease;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 30px;
-            border: 2px solid transparent;
+            background: var(--bg);
+            padding: 4px 16px;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+            transition: all 0.2s;
+            cursor: default;
         }
 
-        /* Эффект при наведении на номер версии */
         .version-number:hover {
-            text-shadow: 0 0 8px var(--accent);
-            transform: scale(1.05);
-            background: rgba(255, 203, 34, 0.1);
-        }
-
-        /* Эффект нажатия на версию */
-        .version-number.click-effect {
+            background: var(--accent-soft);
             border-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-glow);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transform: scale(1.03);
         }
 
-        /* Live-индикатор */
         .live-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(16, 185, 129, 0.12);
-            padding: 5px 12px;
-            border-radius: 30px;
+            gap: 8px;
+            background: rgba(34, 197, 94, 0.12);
+            padding: 4px 16px 4px 12px;
+            border-radius: 60px;
             font-size: 13px;
             font-weight: 600;
-            color: var(--live-green);
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--live);
+            border: 1px solid rgba(34, 197, 94, 0.25);
         }
 
         .live-dot {
             width: 10px;
             height: 10px;
-            background: var(--live-green);
+            background: var(--live);
             border-radius: 50%;
             display: inline-block;
-            animation: blink 1.4s infinite;
+            animation: blinkLive 1.5s infinite;
         }
 
-        @keyframes blink {
-            0% {
-                opacity: 0.3;
-                transform: scale(0.9);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-                background: #34d399;
-            }
-
-            100% {
-                opacity: 0.3;
-                transform: scale(0.9);
-            }
+        @keyframes blinkLive {
+            0% { opacity: 0.3; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 0.3; transform: scale(0.9); }
         }
 
         .version-date {
             color: var(--muted);
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 450;
         }
 
-        /* Кнопка поделиться */
         .share-btn {
-            background: transparent;
+            background: var(--bg);
             border: none;
             cursor: pointer;
             color: var(--muted);
             font-size: 18px;
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            padding: 10px 12px;
+            border-radius: 60px;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
         .share-btn:hover {
             color: var(--accent);
-            transform: scale(1.15);
-            background: rgba(255, 203, 34, 0.15);
+            background: var(--accent-soft);
+            border-color: var(--accent);
+            transform: scale(1.08);
         }
 
         .share-btn.copied {
-            color: #10b981;
-            animation: pop 0.3s ease;
+            color: #22c55e;
+            border-color: #22c55e;
         }
 
-        @keyframes pop {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
+        /* списки */
         ul {
-            margin: 12px 0 0;
-            padding-left: 20px;
-            color: var(--text);
+            margin: 16px 0 4px;
+            padding-left: 24px;
+            list-style: none;
         }
 
         li {
-            margin-bottom: 10px;
-            line-height: 1.65;
+            margin-bottom: 12px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 28px;
+            font-size: 15px;
+            color: var(--text);
         }
 
+        li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* no results */
         .no-results {
-            padding: 26px 18px;
-            margin: 16px 0;
+            padding: 40px 20px;
             text-align: center;
-            border-radius: var(--radius);
+            border-radius: var(--radius-sm);
             background: var(--no-results-bg);
-            color: white;
+            color: var(--muted);
             font-weight: 500;
+            font-size: 16px;
+            border: 1px dashed var(--border-light);
+            margin-top: 20px;
         }
 
+        /* тост */
         .notification-toast {
             position: fixed;
-            bottom: 100px;
-            right: 30px;
+            bottom: 110px;
+            right: 32px;
             background: var(--toast-bg);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 40px;
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 60px;
             font-size: 14px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            transform: translateY(100px);
+            font-weight: 500;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(80px);
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 1100;
+            transition: all 0.35s ease;
+            z-index: 1200;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .notification-toast.show {
@@ -561,80 +560,59 @@
             opacity: 1;
         }
 
-        @media (max-width: 768px) {
-            .stats-group {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .fixed-social-bottom {
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 15px;
-            }
-
-            .theme-toggle {
-                top: 10px;
-                right: 10px;
-            }
+        /* адаптив */
+        @media (max-width: 760px) {
+            .header { flex-direction: column; align-items: stretch; gap: 16px; }
+            .stats-group { justify-content: center; }
+            .container { padding: 20px 16px; }
+            .version-block { padding: 20px 16px; }
+            .update-headline h3 { font-size: 19px; }
+            .theme-toggle { top: 16px; right: 16px; padding: 6px 14px; }
+            .fixed-social-bottom { bottom: 20px; right: 20px; padding: 10px 14px; gap: 10px; }
+            .social-link { width: 42px; height: 42px; font-size: 20px; }
         }
 
-        @media (max-width: 520px) {
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .version-left {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .theme-toggle {
-                position: fixed;
-                top: auto;
-                bottom: 100px;
-                right: 20px;
-            }
+        @media (max-width: 460px) {
+            .update-headline { flex-wrap: wrap; }
+            .update-headline .headline-badge { margin-left: 0; }
+            .version-left { gap: 10px; }
         }
     </style>
 </head>
 
 <body data-theme="light">
-    <!-- Кнопка переключения темы -->
+
+    <!-- Toggle темы -->
     <div class="theme-toggle" id="themeToggle">
         <i class="fa-solid fa-sun"></i>
-        <span>Светлая</span>
-        <i class="fa-solid fa-moon" style="opacity: 0.5;"></i>
+        <span class="theme-label" id="themeLabel">Светлая</span>
+        <i class="fa-solid fa-moon" style="opacity:0.4;"></i>
     </div>
 
-    <!-- Фиксированные соцсети -->
+    <!-- Соцсети -->
     <div class="fixed-social-bottom">
-        <a href="https://t.me/SluppyStars" target="_blank" rel="noopener noreferrer" class="social-link telegram">
+        <a href="https://t.me/SluppyStars" target="_blank" rel="noopener" class="social-link telegram">
             <i class="fa-brands fa-telegram"></i>
             <span class="tooltip">Telegram</span>
         </a>
-        <a href="https://tiktok.com/@sluppy.stars" target="_blank" rel="noopener noreferrer" class="social-link tiktok">
+        <a href="https://tiktok.com/@sluppy.stars" target="_blank" rel="noopener" class="social-link tiktok">
             <i class="fa-brands fa-tiktok"></i>
             <span class="tooltip">TikTok</span>
         </a>
     </div>
 
-    <!-- Уведомление-тост -->
-    <div id="toast" class="notification-toast">Ссылка скопирована! ✨</div>
+    <!-- Toast -->
+    <div id="toast" class="notification-toast">Ссылка скопирована ✨</div>
 
     <main class="layout">
-        <!-- Хедер со статистикой -->
         <header class="header">
             <div class="logo">
-                <img src="logo.jpg" alt="Sluppy Stars logo" loading="lazy">
+                <img src="logo.jpg" alt="Sluppy Stars" loading="lazy" />
                 <div>
                     <h1 class="title">Sluppy Stars</h1>
                     <p class="subtitle">История версий и заметки о релизах</p>
                 </div>
             </div>
-
             <div class="stats-group">
                 <div class="stat-item">
                     <span class="stat-number">11</span>
@@ -642,193 +620,221 @@
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">1.1.0</span>
-                    <span class="stat-label">последнея</span>
+                    <span class="stat-label">последняя</span>
                 </div>
             </div>
         </header>
 
-        <!-- Поиск по центру -->
         <div class="search-container">
-            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)"
-                aria-label="Поиск версий">
+            <input id="search" class="search" type="search" placeholder="Поиск по версии (например 1.0.0)" aria-label="Поиск версий" />
         </div>
 
         <section class="container" id="versions">
-            <div class="version-block" data-version="1.1.0" id="v1.1.0">
+
+            <!-- 1.1.0 -->
+            <div class="version-block last-version" data-version="1.1.0" id="v1.1.0">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-rocket"></i></span>
+                    <h3>Мега-апдейт &amp; экосистема</h3>
+                    <span class="headline-badge">новое</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.1.0</span>
                         <span class="live-badge"><span class="live-dot"></span> live</span>
                         <span class="version-date">5 апреля 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.1.0" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.1.0" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
                     <li>Самое крупное обновление бота @SluppyGames_bot.</li>
                     <li>Добавлена валюта Sluppy Coins.</li>
-                    <li>Добавлены команды для фарма Sluppy Coins.</li>
-                    <li>Добавлены команды для просмотра таблицы лидеров</li>
-                    <li>Добавлены команды для просмотра профиля собеседника.</li>
-                    <li>Добавлены кнопки для покупки Sluppy Premium статуса.</li>
-                    <li>Добавлены кнопки для выбора премиум эмодзи перед ником.</li>
-                    <li>Напиши сикс в чат, и получи ответ от бота.</li>
-                    <li>Исправили много ошибок и недочетов.</li>
+                    <li>Команды для фарма Sluppy Coins и таблицы лидеров.</li>
+                    <li>Просмотр профиля собеседника, покупка Sluppy Premium статуса.</li>
+                    <li>Премиум эмодзи перед ником, ответ бота на «сикс».</li>
+                    <li>Исправлено множество ошибок и недочетов.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.9 -->
             <div class="version-block" data-version="1.0.9" id="v1.0.9">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-video"></i></span>
+                    <h3>Видео &amp; улучшения ботов</h3>
+                    <span class="headline-badge">оптимизация</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.9</span>
                         <span class="version-date">5 апреля 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.9" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.9" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Исправлено скачивание видео из соц сетей в боте: @SearchVideos_bot.</li>
-                    <li>Улучшен интерфейс бота: @SearchVideos_bot.</li>
-                    <li>Улучшен интерфейс бота: @SluppyGifts_bot.</li>
-                    <li>Исправлено неверные данные в боте: @SluppyRates_bot.</li>
-                    <li>Убраны лишние материалы, для быстрой и простой проверки курса в боте: @SluppyRates_bot.</li>
-                    <li>Исправлена оптимизация серверов, боты работают быстрее.</li>
-                    <li>И еще ряд мелких улучшений и исправлений для ботов.</li>
+                    <li>Исправлено скачивание видео в @SearchVideos_bot.</li>
+                    <li>Улучшен интерфейс @SearchVideos_bot и @SluppyGifts_bot.</li>
+                    <li>Исправлены данные в @SluppyRates_bot, убраны лишние материалы.</li>
+                    <li>Оптимизация серверов — боты работают быстрее.</li>
+                    <li>Ряд мелких улучшений и исправлений.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.8 -->
             <div class="version-block" data-version="1.0.8" id="v1.0.8">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-bug"></i></span>
+                    <h3>Исправления &amp; приватность</h3>
+                    <span class="headline-badge">фиксы</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.8</span>
                         <span class="version-date">5 апреля 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.8" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.8" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Исправлена ошибка, при которой каждое слово в чате с ботом вызывало меню.</li>
-                    <li>Исправлена ошибка, при которой люди не могли найти пользователя который поменял юзернейм.</li>
-                    <li>Убрана возможность подарить подарок анонимно, из-за некоторых причин.</li>
-                    <li>Исправлена вкладка "Последние покупки", сейчас показывает настоящие данные.</li>
-                    <li>Добавлено подтверждение покупки.</li>
-                    <li>При первом использовании бота добавлена возможность согласиться с Пользовательским соглашением и Политикой конфиденциальности.</li>
-                    <li>И еще ряд мелких улучшений и исправлений.</li>
+                    <li>Исправлена ошибка с меню на каждое слово в чате.</li>
+                    <li>Исправлен поиск пользователя после смены юзернейма.</li>
+                    <li>Убрана анонимная отправка подарков (по причинам).</li>
+                    <li>Вкладка «Последние покупки» теперь показывает реальные данные.</li>
+                    <li>Добавлено подтверждение покупки и согласие с политикой.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.7 -->
             <div class="version-block" data-version="1.0.7" id="v1.0.7">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-gift"></i></span>
+                    <h3>Подарочный бот</h3>
+                    <span class="headline-badge">новый бот</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.7</span>
                         <span class="version-date">1 апреля 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.7" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.7" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Сделан новый бот для покупки удаленных и обычных подарков. @SluppyGifts_bot</li>
-                    <li>Возможность отправления подарка анонимно и со своим текстом.</li>
+                    <li>Новый бот @SluppyGifts_bot — покупка удалённых и обычных подарков.</li>
+                    <li>Анонимная отправка подарка с собственным текстом.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.6 -->
             <div class="version-block" data-version="1.0.6" id="v1.0.6">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-arrow-trend-up"></i></span>
+                    <h3>Два новых бота &amp; конкурс</h3>
+                    <span class="headline-badge">запуск</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.6</span>
                         <span class="version-date">24 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.6" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.6" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Запустили 2 новых бота.</li>
-                    <li>1: @SluppyRates_bot - курс валют в реальном времени, долбавляйте в группы и знайте актуальные курсы в реальном времени.</li>
-                    <li>2: @SearchVideos_bot - скачивайте видео из TikTok, YouTube Shorts, Instagram Reels, так же есть поддержка групп.</li>
-                    <li>Запустили конкурс "Оплата за просмотры в социальных сетях".</li>
+                    <li>@SluppyRates_bot — курс валют в реальном времени для групп.</li>
+                    <li>@SearchVideos_bot — скачивание видео из TikTok, YouTube Shorts, Instagram Reels.</li>
+                    <li>Запущен конкурс «Оплата за просмотры в соцсетях».</li>
                     <li>Исправлены переходы по ссылкам на сайте.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.5 -->
             <div class="version-block" data-version="1.0.5" id="v1.0.5">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-star"></i></span>
+                    <h3>Удалённые подарки</h3>
+                    <span class="headline-badge">новинка</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.5</span>
                         <span class="version-date">19 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.5" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.5" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Добавили 2 удаленных подарка.</li>
+                    <li>Добавлено 2 удалённых подарка.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.4 -->
             <div class="version-block" data-version="1.0.4" id="v1.0.4">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-percent"></i></span>
+                    <h3>Рефералы &amp; тема</h3>
+                    <span class="headline-badge">баланс</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.4</span>
                         <span class="version-date">16 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.4" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.4" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Увеличен реферальный процент: c 2% до 25%.</li>
-                    <li>Исправлен темный и светлый режим.</li>
-                    <li>Кнопки на телефоне больше не пропадают.</li>
+                    <li>Реферальный процент увеличен с 2% до 25%.</li>
+                    <li>Исправлен тёмный и светлый режим, кнопки на телефоне больше не пропадают.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.3 -->
             <div class="version-block" data-version="1.0.3" id="v1.0.3">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-palette"></i></span>
+                    <h3>Дизайн сайта &amp; анимации</h3>
+                    <span class="headline-badge">стиль</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.3</span>
                         <span class="version-date">15 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.3" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.3" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
-                    <li>Обновление дизайна сайта.</li>
-                    <li>Последняя версия стала выделяться эффектами.</li>
-                    <li>Исправлен поиск по версиям.</li>
-                    <li>Добавлены анимации на кнопках социальных сетей.</li>
+                    <li>Обновление дизайна сайта, последняя версия выделяется эффектами.</li>
+                    <li>Исправлен поиск по версиям, добавлены анимации на кнопках соцсетей.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.2 -->
             <div class="version-block" data-version="1.0.2" id="v1.0.2">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-share-nodes"></i></span>
+                    <h3>Социальные сети</h3>
+                    <span class="headline-badge">интеграция</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.2</span>
                         <span class="version-date">14 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.2" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.2" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
                     <li>Добавлены социальные сети.</li>
                 </ul>
             </div>
 
+            <!-- 1.0.1 -->
             <div class="version-block" data-version="1.0.1" id="v1.0.1">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                    <h3>Дизайн бота &amp; чейнджлог</h3>
+                    <span class="headline-badge">старт</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.1</span>
                         <span class="version-date">14 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.1" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.1" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
                     <li>Обновление дизайна бота.</li>
@@ -836,15 +842,19 @@
                 </ul>
             </div>
 
+            <!-- 1.0.0 -->
             <div class="version-block" data-version="1.0.0" id="v1.0.0">
+                <div class="update-headline">
+                    <span class="headline-icon"><i class="fa-solid fa-flag"></i></span>
+                    <h3>Первый запуск</h3>
+                    <span class="headline-badge">дебют</span>
+                </div>
                 <div class="version-header">
                     <div class="version-left">
                         <span class="version-number">1.0.0</span>
                         <span class="version-date">8 марта 2026</span>
                     </div>
-                    <button class="share-btn" data-version="1.0.0" title="Поделиться этой версией">
-                        <i class="fa-solid fa-link"></i>
-                    </button>
+                    <button class="share-btn" data-version="1.0.0" title="Поделиться"><i class="fa-solid fa-link"></i></button>
                 </div>
                 <ul>
                     <li>Первый запуск проекта.</li>
@@ -852,140 +862,112 @@
             </div>
 
             <div class="no-results" id="noResults" hidden>
-                Ничего не найдено. Попробуйте изменить запрос.
+                <i class="fa-regular fa-circle-xmark" style="margin-right:10px;"></i> Ничего не найдено. Попробуйте изменить запрос.
             </div>
         </section>
     </main>
 
     <script>
-        (function () {
+        (function() {
             const searchInput = document.getElementById('search');
             const versionBlocks = Array.from(document.querySelectorAll('.version-block'));
             const noResults = document.getElementById('noResults');
             const toast = document.getElementById('toast');
             const themeToggle = document.getElementById('themeToggle');
+            const themeLabel = document.getElementById('themeLabel');
 
-            // Помечаем последнюю версию (по дате или вручную)
-            const lastVersionBlock = versionBlocks.find(block => block.dataset.version === '1.1.0'); 
-            if (lastVersionBlock) {
-                lastVersionBlock.classList.add('last-version');
-            }
+            // последняя версия — уже есть класс last-version
 
-            // Эффект нажатия на версию
-            document.querySelectorAll('.version-number').forEach(versionElement => {
-                versionElement.addEventListener('click', function (e) {
-                    this.classList.add('click-effect');
-                    setTimeout(() => {
-                        this.classList.remove('click-effect');
-                    }, 1000);
-                });
-            });
-
-            // Фильтрация
+            // фильтрация
             function filterVersions() {
                 const query = searchInput.value.trim().toLowerCase();
-                let visibleCount = 0;
-
+                let visible = 0;
                 versionBlocks.forEach(block => {
-                    const version = block.dataset.version?.toLowerCase() ?? '';
-                    const title = block.querySelector('.version-number')?.textContent?.toLowerCase() ?? '';
-
-                    const matches = !query || version.includes(query) || title.includes(query);
+                    const version = block.dataset.version?.toLowerCase() || '';
+                    const headline = block.querySelector('.update-headline h3')?.textContent?.toLowerCase() || '';
+                    const matches = !query || version.includes(query) || headline.includes(query);
                     block.hidden = !matches;
-
-                    if (matches) visibleCount += 1;
+                    if (matches) visible++;
                 });
-
-                noResults.hidden = visibleCount > 0;
+                noResults.hidden = visible > 0;
             }
-
             searchInput.addEventListener('input', filterVersions);
 
-            // Копирование ссылки (поделиться)
-            function showToast(message) {
-                toast.textContent = message || 'Ссылка скопирована! ✨';
+            // копирование ссылки
+            function showToast(msg) {
+                toast.textContent = msg || 'Ссылка скопирована ✨';
                 toast.classList.add('show');
-                setTimeout(() => toast.classList.remove('show'), 2000);
+                clearTimeout(toast._timer);
+                toast._timer = setTimeout(() => toast.classList.remove('show'), 2200);
             }
 
             document.querySelectorAll('.share-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    e.stopPropagation();
-
                     const version = btn.dataset.version;
                     if (!version) return;
-
                     const url = new URL(window.location.href);
                     url.hash = `#v${version}`;
-
-                    navigator.clipboard.writeText(url.toString()).then(() => {
-                        btn.classList.add('copied');
-                        setTimeout(() => btn.classList.remove('copied'), 500);
-                        showToast(`Ссылка на ${version} скопирована!`);
-                    }).catch(err => {
-                        console.warn('Не удалось скопировать:', err);
-                        prompt('Скопируйте ссылку вручную:', url.toString());
-                    });
+                    navigator.clipboard.writeText(url.toString())
+                        .then(() => {
+                            btn.classList.add('copied');
+                            setTimeout(() => btn.classList.remove('copied'), 400);
+                            showToast(`Ссылка на ${version} скопирована ✨`);
+                        })
+                        .catch(() => {
+                            prompt('Скопируйте ссылку вручную:', url.toString());
+                        });
                 });
             });
 
-            // Переключение темы
+            // тема
             function setTheme(theme) {
                 document.body.setAttribute('data-theme', theme);
                 localStorage.setItem('theme', theme);
-
-                const sunIcon = themeToggle.querySelector('.fa-sun');
-                const moonIcon = themeToggle.querySelector('.fa-moon');
-                const text = themeToggle.querySelector('span');
-
+                const sun = themeToggle.querySelector('.fa-sun');
+                const moon = themeToggle.querySelector('.fa-moon');
                 if (theme === 'dark') {
-                    sunIcon.style.opacity = '0.5';
-                    moonIcon.style.opacity = '1';
-                    text.textContent = 'Темная';
+                    sun.style.opacity = '0.4';
+                    moon.style.opacity = '1';
+                    themeLabel.textContent = 'Тёмная';
                 } else {
-                    sunIcon.style.opacity = '1';
-                    moonIcon.style.opacity = '0.5';
-                    text.textContent = 'Светлая';
+                    sun.style.opacity = '1';
+                    moon.style.opacity = '0.4';
+                    themeLabel.textContent = 'Светлая';
                 }
             }
 
-            // Загрузка сохраненной темы
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
+            const saved = localStorage.getItem('theme') || 'light';
+            setTheme(saved);
 
             themeToggle.addEventListener('click', () => {
-                const currentTheme = document.body.getAttribute('data-theme');
-                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                setTheme(newTheme);
+                const current = document.body.getAttribute('data-theme');
+                setTheme(current === 'light' ? 'dark' : 'light');
             });
 
-            // Обработка якоря
-            function scrollToVersionFromHash() {
+            // якорь
+            function scrollToVersion() {
                 const hash = window.location.hash;
                 if (hash && hash.startsWith('#v')) {
-                    const versionId = hash.substring(2);
-                    const targetBlock = versionBlocks.find(block => block.dataset.version === versionId);
-                    if (targetBlock) {
+                    const id = hash.substring(2);
+                    const target = versionBlocks.find(b => b.dataset.version === id);
+                    if (target) {
                         setTimeout(() => {
-                            targetBlock.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            targetBlock.style.transition = 'background 0.5s';
-                            targetBlock.style.background = 'rgba(255, 203, 34, 0.15)';
-                            setTimeout(() => {
-                                targetBlock.style.background = '';
-                            }, 1000);
-                        }, 200);
+                            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            target.style.transition = 'background 0.4s';
+                            target.style.background = 'var(--accent-soft)';
+                            setTimeout(() => target.style.background = '', 900);
+                        }, 300);
                     }
                 }
             }
+            window.addEventListener('load', scrollToVersion);
 
-            window.addEventListener('load', scrollToVersionFromHash);
-
-            // Поддержка параметра ?version=
+            // version param
             const params = new URLSearchParams(location.search);
-            const versionParam = params.get('version');
-            if (versionParam) {
-                searchInput.value = versionParam;
+            const vParam = params.get('version');
+            if (vParam) {
+                searchInput.value = vParam;
                 filterVersions();
             }
         })();
